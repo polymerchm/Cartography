@@ -13,7 +13,11 @@ public protocol LayoutItem: class {
 }
 
 extension LayoutItem {
-    public func asProxy() -> ProxyType {
-        return asProxy(context: Context())
+    public func asProxy(_ identifier: String? = nil) -> ProxyType {
+        let ctx = Context()
+        if identifier != nil {
+            ctx.identifier = identifier!
+        }
+        return asProxy(context: ctx)
     }
 }

@@ -23,7 +23,11 @@ internal class Constraint {
         layoutConstraint.isActive = false
     }
 
-    init(_ layoutConstraint: NSLayoutConstraint) {
+    init(_ layoutConstraint: NSLayoutConstraint, identifier: String? = nil) {
+        
         self.layoutConstraint = layoutConstraint
+        if identifier != nil {
+            self.layoutConstraint.identifier = identifier
+        }
     }
 }

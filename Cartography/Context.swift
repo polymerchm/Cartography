@@ -18,6 +18,7 @@ public typealias LayoutRelation = NSLayoutConstraint.Relation
 
 public class Context {
     internal var constraints: [Constraint] = []
+    internal var identifier: String? = nil
     
     internal func addConstraint(_ from: Property, to: Property? = nil, coefficients: Coefficients = Coefficients(), relation: LayoutRelation = .equal) -> NSLayoutConstraint {
         if let fromItem = from.item as? View {
@@ -31,7 +32,10 @@ public class Context {
                                                   attribute: to?.attribute ?? .notAnAttribute,
                                                   multiplier: CGFloat(coefficients.multiplier),
                                                   constant: CGFloat(coefficients.constant))
-
+        
+        if identifier != nil {
+            layoutConstraint.identifier = identifier!
+        }
         constraints.append(Constraint(layoutConstraint))
 
         return layoutConstraint
